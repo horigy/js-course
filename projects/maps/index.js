@@ -35,12 +35,13 @@ function init() {
 
   document.body.addEventListener('click', onDocumentClick);
 
-  function onClick(coords) {
+  async function onClick(coords) {
     const list = callApi('list', { coords });
+    
     const form = createForm(coords, list);
     const formContent = form.innerHTML;
     map.balloon.open(coords, formContent);
-    console.log(revGeoCoder(coords));
+    // console.log(await revGeoCoder(coords));
   }
 
   function createPlacemark(coords) {
@@ -76,12 +77,18 @@ function init() {
     }
   }
 
-  function createForm(coords, reviews) {
+  async function createForm(coords, reviews) {
     const root = document.createElement('div');
     root.innerHTML = document.querySelector('#addFormTemplate').innerHTML;
     const reviewList = root.querySelector('.review-list');
     const reviewForm = root.querySelector('[data-role=review-form]');
     reviewForm.dataset.coords = JSON.stringify(coords);
+    const address = root.querySelector('.adress-line');
+    const addressLine = await revGeoCoder(coords);
+
+    console.log(addressLine);
+    console.log(address);
+    address.innerText = addressLine;
   
     for (const item of reviews) {
       const div = document.createElement('div');
