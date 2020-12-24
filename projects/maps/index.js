@@ -38,7 +38,7 @@ function init() {
   async function onClick(coords) {
     const list = callApi('list', { coords });
     
-    const form = createForm(coords, list);
+    const form = await createForm(coords, list);
     const formContent = form.innerHTML;
     map.balloon.open(coords, formContent);
     // console.log(await revGeoCoder(coords));
@@ -83,7 +83,7 @@ function init() {
     const reviewList = root.querySelector('.review-list');
     const reviewForm = root.querySelector('[data-role=review-form]');
     reviewForm.dataset.coords = JSON.stringify(coords);
-    const address = root.querySelector('.adress-line');
+    const address = root.querySelector('.address-line');
     const addressLine = await revGeoCoder(coords);
 
     console.log(addressLine);

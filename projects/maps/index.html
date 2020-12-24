@@ -6,8 +6,30 @@
         margin: 0;
     }
 
+    .address-line {
+        width: 100%;
+        font-size: 10px;
+        color: white;
+        background-color: #ff8663;
+        font-weight: 300;
+    }
+
+    .review-list {
+        width: 300px;
+        max-height: 120px;
+        overflow-y: auto;
+    }
+
+    .review-item {
+        overflow-wrap: break-word;
+    }
+
     .form {
         width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 10px;
     }
 
     .form .field {
@@ -19,29 +41,49 @@
     .form .field textarea {
         width: 100%;
         box-sizing: border-box;
+        border-radius: 10px;
+        padding: 5px 10px;
     }
 
     .form .field textarea {
         resize: none;
+        margin-bottom: -5px;
     }
 
     .form .form-error {
         color: red;
+        
     }
 
     .form .review-list {
         max-height: 500px;
         overflow: scroll;
     }
+    
+    h3 {
+        width: 100%;
+        text-align: left;
+        color: #ff8663;
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: 5px;
+        
+    }
+    .add-btn {
+        background-color: #ff8663;
+        color: white;
+        border-radius: 10px;
+        box-shadow: none;
+    }
 </style>
 
 <div id="map"></div>
 
 <script type="template" id="addFormTemplate">
-    <h2 class="adress-line"></h2>
+    <h2 class="address-line"></h2>
     <div class="review-list"></div>
     <div class="form" data-role="review-form">
-        <h3>Отзыв:</h3>
+        <h3>ВАШ ОТЗЫВ</h3>
         <div class="field">
             <input data-role="review-name" type="text" placeholder="Укажите ваше имя">
         </div>
@@ -52,7 +94,7 @@
             <textarea data-role="review-text" placeholder="Оставьте отзыв" rows="5"></textarea>
         </div>
 
-        <button data-role="review-add">Добавить</button>
+        <button class="add-btn" data-role="review-add">Добавить</button>
         <span class="form-error"></span>
     </div>
 </script>
