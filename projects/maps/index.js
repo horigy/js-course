@@ -1,7 +1,4 @@
 import './index.html';
-// import GeoReview from './Georeview.js';
-
-// new GeoReview();
 
 ymaps.ready(init);
 
@@ -37,11 +34,10 @@ function init() {
 
   async function onClick(coords) {
     const list = callApi('list', { coords });
-    
+
     const form = await createForm(coords, list);
     const formContent = form.innerHTML;
     map.balloon.open(coords, formContent);
-    // console.log(await revGeoCoder(coords));
   }
 
   function createPlacemark(coords) {
@@ -89,7 +85,7 @@ function init() {
     console.log(addressLine);
     console.log(address);
     address.innerText = addressLine;
-  
+
     for (const item of reviews) {
       const div = document.createElement('div');
       div.classList.add('review-item');
@@ -101,15 +97,14 @@ function init() {
         `;
       reviewList.appendChild(div);
     }
-  
+
     return root;
   }
 
   async function revGeoCoder(coords) {
-    var response = await ymaps.geocode(coords);
+    const response = await ymaps.geocode(coords);
     return response.geoObjects.get(0).getAddressLine();
   }
-
 }
 
 function callApi(method, body = {}) {
@@ -136,25 +131,3 @@ function callApi(method, body = {}) {
       return {};
   }
 }
-
-// function createForm(coords, reviews) {
-//   const root = document.createElement('div');
-//   root.innerHTML = document.querySelector('#addFormTemplate').innerHTML;
-//   const reviewList = root.querySelector('.review-list');
-//   const reviewForm = root.querySelector('[data-role=review-form]');
-//   reviewForm.dataset.coords = JSON.stringify(coords);
-
-//   for (const item of reviews) {
-//     const div = document.createElement('div');
-//     div.classList.add('review-item');
-//     div.innerHTML = `
-//           <div>
-//               <b>${item.name}</b> [${item.place}]
-//           </div>
-//           <div>${item.text}</div>
-//       `;
-//     reviewList.appendChild(div);
-//   }
-
-//   return root;
-// }
