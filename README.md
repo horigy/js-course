@@ -1,3 +1,10 @@
+# Maps and chat on javascript + sample functions
+Maps - adding locations based on Yandex API
+
+## Maps published at
+https://horigy.github.io/ngerasimov.github.io/maps/
+
+
 ## Javascript Boilerplate
 
 Универсальная сборка для выполнения домашних заданий на курсе по Javascript
